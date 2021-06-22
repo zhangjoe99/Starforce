@@ -1,8 +1,8 @@
 import numpy as np
-from functions import setMatrix, get_costs, translate_goal, translate_result
+from functions import getMatrix, get_costs, translate_goal, translate_result
 
 def calculate(start, goal, level = 160, safeguard = False, event = None, starcatch = False):
-    table = setMatrix('normal', safeguard = safeguard, event = event, starcatch = starcatch)
+    table = getMatrix(safeguard = safeguard, event = event, starcatch = starcatch)
 
     new_goal = translate_goal(goal)
 
@@ -22,9 +22,17 @@ def calculate(start, goal, level = 160, safeguard = False, event = None, starcat
 
     X = translate_result(X)
 
-    print(X)
+    #print(X)
     print("It will take an expected " + str(float(X[start][0])) + " dollars to go from rank " + str(start) + " to rank " + str(goal))
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    calculate(0, 17, 200, safeguard=False, event = 'fiveten') # Parameters (start rank, goal rank, level, event) Add 0 as level if you want to see expected number of steps
+    # Parameters (start rank, goal rank, level, event) Add 0 as level if you want to see expected number of steps
+    calculate(0, 17, 150, safeguard=False, event=None)
+    calculate(0, 17, 150, safeguard=True, event=None)
+    calculate(0, 17, 150, safeguard=False, event='fiveten')
+    calculate(0, 17, 150, safeguard=True, event='fiveten')
+    calculate(0, 17, 160, safeguard=False, event=None)
+    calculate(0, 17, 160, safeguard=True, event=None)
+    calculate(0, 17, 160, safeguard=False, event='fiveten')
+    calculate(0, 17, 160, safeguard=True, event='fiveten')
