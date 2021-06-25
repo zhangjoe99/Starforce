@@ -22,8 +22,8 @@ def calculate(start, goal, level = 160, safeguard = False, event = None, starcat
 
     X = translate_result(X)
 
-    #print(X)
-    print("It will take an expected " + str(float(X[start][0])) + " dollars to go from rank " + str(start) + " to rank " + str(goal))
+    print(X)
+    return "It will take an expected " + str(float(X[start][0])) + " dollars to go from rank " + str(start) + " to rank " + str(goal)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
