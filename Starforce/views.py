@@ -1,8 +1,5 @@
 from django.shortcuts import render
-from ../pythons/main.py import calculate
-from
-
-
+from main import calculate
 
 def output(request):
     data = calculate(0, 17, 160, safeguard=False, event=None)
