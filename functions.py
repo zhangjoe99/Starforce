@@ -3,7 +3,7 @@ import numpy as np
 def getMatrix(safeguard = False, event = None, starcatch = False):
     global table
 
-    table = [   # Base Table
+    table = [   # Base Probability Table
         [0.05,0.95,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         [0,0.1,0.9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         [0,0,0.15,0.85,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -65,7 +65,7 @@ def getMatrix(safeguard = False, event = None, starcatch = False):
             [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.7,0,0,0,0,0,0.3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         ]
 
-    if event == 'fiveten':
+    if event == 'fiveten' or event == 'fivetenthirty':
         table[5] = [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         table[11] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         table[22] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -103,30 +103,37 @@ def get_costs(new_goal, equip_level = 160, safeguard = False, event = None):
         if i > list[current_rank]:
             current_rank += 1
 
+        # if i < 10: # Below 10
+        #     cost = round(1000+(level**3)*((current_rank+1)/25), -2)
+        # elif i < 21: # Below 15
+        #     cost = round(1000+(level**3)*(((current_rank+1)**2.7)/400), -2)
+        # elif i < 29: # Below 18
+        #     cost = round(1000+(level**3)*(((current_rank+1)**2.7)/120), -2)
+        # elif i < 32: # Below 20
+        #     cost = round(1000+(level**3)*(((current_rank+1)**2.7)/110), -2)
+        # elif i < 43: # Below 25
+        #     cost = round(1000+(level**3)*(((current_rank+1)**2.7)/100), -2)
+
         if i < 10: # Below 10
-            cost = round(1000+(level**3)*((current_rank+1)/25), -2)
+            cost = 100 * round((level**3)*((current_rank+1)/2500)+10, -2)
         elif i < 21: # Below 15
-            cost = round(1000+(level**3)*(((current_rank+1)**2.7)/400), -2)
-        elif i < 29: # Below 18
-            cost = round(1000+(level**3)*(((current_rank+1)**2.7)/120), -2)
-        elif i < 32: # Below 20
-            cost = round(1000+(level**3)*(((current_rank+1)**2.7)/110), -2)
-        elif i < 43: # Below 25
-            cost = round(1000+(level**3)*(((current_rank+1)**2.7)/100), -2)
+            cost = 100 * round((level**3)*(((current_rank+1)**2.7)/40000)+10, -2)
+        else: # Below 25
+            cost = 100 * round((level**3)*(((current_rank+1)**2.7)/20000)+10, -2)
 
         if safeguard:
-            if event == 'fiveten':
+            if event == 'fiveten' or event == 'fivetenthirty':
                 safe_list = [16, 17, 18, 19, 20, 24, 25]
             else:
                 safe_list = [16, 17, 18, 19, 20, 22, 24, 25]
             if i > 14 and i < 26:
                 if i in safe_list:
-                    if event == 'thirty':
+                    if event == 'thirty' or event == 'fivetenthirty':
                         cost *= (17/7)
                     else:
                         cost *= 2
 
-        if event == 'thirty':
+        if event == 'thirty' or event == 'fivetenthirty':
             cost *= 0.7
 
         result.append(cost)

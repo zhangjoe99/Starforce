@@ -22,17 +22,28 @@ def calculate(start, goal, level = 160, safeguard = False, event = None, starcat
 
     X = translate_result(X)
 
-    print(X)
-    return "It will take an expected " + str(float(X[start][0])) + " dollars to go from rank " + str(start) + " to rank " + str(goal)
+    # print(X)
+    print("It will take an expected " + str(int(X[start][0])) + " meso to go from rank " + str(start) + " to rank " + str(goal))
+    return "It will take an expected " + str(int(X[start][0])) + " meso to go from rank " + str(start) + " to rank " + str(goal)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # Parameters (start rank, goal rank, level, event) Add 0 as level if you want to see expected number of steps
-    calculate(0, 17, 150, safeguard=False, event=None)
-    calculate(0, 17, 150, safeguard=True, event=None)
-    calculate(0, 17, 150, safeguard=False, event='fiveten')
-    calculate(0, 17, 150, safeguard=True, event='fiveten')
-    calculate(0, 17, 160, safeguard=False, event=None)
-    calculate(0, 17, 160, safeguard=True, event=None)
-    calculate(0, 17, 160, safeguard=False, event='fiveten')
-    calculate(0, 17, 160, safeguard=True, event='fiveten')
+    calculate(17, 22, 140, safeguard=False, event='fivetenthirty')
+    calculate(0, 22, 160, safeguard=True, event='fivetenthirty')
+    calculate(0, 21, 140, safeguard=False, event='fivetenthirty')
+    calculate(20, 21, 150, safeguard=False, event='fivetenthirty')
+    calculate(20, 22, 160, safeguard=False, event='fivetenthirty')
+    calculate(0, 22, 160, safeguard=True, event='fivetenthirty')
+
+    # calculate(18, 22, 150, safeguard=False, event='fiveten')
+    # calculate(18, 22, 150, safeguard=True, event='fiveten')
+    # calculate(18, 22, 150, safeguard=False, event='fivetenthirty')
+    # calculate(18, 22, 150, safeguard=True, event='fivetenthirty')
+
+    calculate(17, 22, 200, safeguard=False, event='fivetenthirty')
+    calculate(19, 22, 200, safeguard=False, event='fivetenthirty')
+
+    # calculate(18, 22, 140, safeguard=False, event=None)
+    # calculate(18, 22, 150, safeguard=False, event=None)
+    # calculate(18, 22, 160, safeguard=False, event=None)
